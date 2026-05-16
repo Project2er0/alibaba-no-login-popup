@@ -79,31 +79,6 @@ alibaba-no-login-popup/
 
 ### ❌ 不能解决：阿里服务端硬性鉴权
 
-部分商品详情页，阿里在**服务端**直接对未登录请求返回 302 重定向到：
-
-```
-https://login.alibaba.com/newlogin/icbuLogin.htm?return_url=...
-```
-
-这种情况下浏览器根本拿不到详情页 HTML，**任何客户端工具都无法处理**。
-
-**验证方法：**
-1. 复制干净的商品 URL（去掉 query 参数）
-2. 正常窗口粘贴回车 → 若被踢到 login
-3. 无痕窗口再试 → 若仍被踢到 login
-
-两次都跳转即为服务端鉴权，可行方案：
-
-| 方案 | 说明 |
-|---|---|
-| **登录账号**（最推荐） | 登录后服务端不再拦截 |
-| Google 网页快照 | 搜 `site:alibaba.com "关键词"`，点结果旁的快照 |
-| Archive.org | `https://web.archive.org/web/*/alibaba.com/product-detail/*关键词*` |
-| 官方 API / 第三方工具 | 批量选品请用阿里 OpenAPI 或 Jungle Scout 类工具 |
-
-> ⚠️ 不建议用复杂手段"骗"阿里：服务端拦截不受 cookie / referer / URL 影响，反而可能触发更严格风控。
-
----
 
 ## License
 
