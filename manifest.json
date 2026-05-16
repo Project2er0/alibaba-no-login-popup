@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Ali Search Unlock",
+  "version": "1.0.0",
+  "description": "移除阿里巴巴 / 速卖通 搜索/列表页上的强制登录弹窗（含 baxia 风控 iframe），并恢复页面滚动。",
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "action": {
+    "default_title": "Ali Search Unlock",
+    "default_popup": "popup.html"
+  },
+  "permissions": ["storage", "scripting"],
+  "host_permissions": [
+    "*://*.alibaba.com/*",
+    "*://*.aliexpress.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.alibaba.com/*",
+        "*://*.aliexpress.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ]
+}

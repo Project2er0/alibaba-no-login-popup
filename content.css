@@ -1,0 +1,71 @@
+/* === Alibaba 强制登录弹窗屏蔽样式 ===
+   用 CSS 兜底：即便 JS 还没来得及移除节点，弹窗也不可见、不可交互。
+   说明：选择器尽量精准，避免误伤正常 dialog。 */
+
+/* 0. baxia（百夏）风控登录 iframe 弹窗 —— 最高优先级 */
+iframe#baxia-dialog-content,
+iframe[src*="login.alibaba.com/mini_login.htm" i],
+iframe[src*="passport.alibaba.com" i],
+iframe[src*="login.aliexpress.com" i],
+#baxia-dialog,
+#baxia-dialog-mask,
+div[id^="baxia-"],
+div[class^="baxia-"],
+div[class*=" baxia-"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* 1. 通用强制登录弹窗容器（Alibaba 常见类名/属性）*/
+.ali-react-modal-mask,
+.next-overlay-wrapper.opened.next-overlay-inner,
+.next-dialog-container[role="dialog"][aria-label*="Sign" i],
+div[class*="login-dialog"],
+div[class*="LoginDialog"],
+div[class*="sign-in-dialog"],
+div[class*="SignInDialog"],
+div[class*="forceLoginDialog"],
+div[class*="ForceLoginDialog"],
+div[id*="login-dialog" i],
+div[data-spm*="login" i][role="dialog"],
+div[class*="login-popup"],
+div[class*="LoginPopup"],
+div[class*="loginGuide"],
+div[class*="LoginGuide"],
+div[class*="signin-mask"],
+div[class*="SigninMask"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* 2. 遮罩 / 蒙层 */
+.next-overlay-backdrop,
+.ali-react-modal-mask,
+div[class*="mask"][class*="login" i],
+div[class*="Mask"][class*="Login" i],
+div[class*="overlay"][class*="login" i],
+div[class*="Overlay"][class*="Login" i] {
+  display: none !important;
+  pointer-events: none !important;
+  background: transparent !important;
+}
+
+/* 3. 锁滚动恢复：弹窗组件常给 html/body 加 overflow:hidden / position:fixed */
+html.next-dialog-open,
+body.next-dialog-open,
+html.next-overlay-open,
+body.next-overlay-open,
+body[style*="overflow: hidden"],
+body[style*="overflow:hidden"],
+html[style*="overflow: hidden"],
+html[style*="overflow:hidden"] {
+  overflow: auto !important;
+  position: static !important;
+  padding-right: 0 !important;
+}
